@@ -1,2 +1,5 @@
 examplestore.db
 .DS_Store
+bootstrap
+bootstrap.zip
+.env
