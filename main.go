@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -61,7 +63,18 @@ func handler(ctx context.Context) (string, error) {
 		return "", fmt.Errorf("Connect: %w", err)
 	}
 
-	if err := sendMessage(client, targetNumber, "Hola desde Go en Lambda!"); err != nil {
+	menuFromFile, err := os.ReadFile("example.json")
+	if err != nil {
+		log.Fatalf("failed to read example menu: %v", err)
+	}
+
+	var menu Menu
+	if err := json.Unmarshal(menuFromFile, &menu); err != nil {
+		log.Fatalf("failed to parse menu from file")
+	}
+
+	formattedMenu := fmtMenu(menu)
+	if err := sendMessage(client, targetNumber, formattedMenu); err != nil {
 		fmt.Printf("Send error: %v\n", err)
 	}
 
