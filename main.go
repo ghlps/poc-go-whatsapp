@@ -8,7 +8,6 @@ import (
 
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/service/s3"
 	_ "github.com/joho/godotenv/autoload"
 	_ "modernc.org/sqlite"
 
@@ -26,17 +25,22 @@ func handler(ctx context.Context) (string, error) {
 	dbLog := waLog.Stdout("Database", "DEBUG", true)
 
 	cfg, err := config.LoadDefaultConfig(ctx)
+	s3Client := NewS3Client(cfg)
+
 	if err != nil {
 		return "", fmt.Errorf("unable to load SDK config: %w", err)
 	}
-	s3Client := s3.NewFromConfig(cfg)
 
 	fmt.Println("Downloading database from S3...")
-	if err := downloadFromS3(ctx, s3Client, bucketName, dbFileName, localPath); err != nil {
+
+	if err := s3Client.downloadFromS3(ctx, bucketName, dbFileName, localPath); err != nil {
 		fmt.Printf("Could not download DB (normal for first run): %v\n", err)
 	}
 
-	dbString := fmt.Sprintf("file:%s?_pragma=foreign_keys(1)", localPath)
+	dbString := fmt.Sprintf(
+		"file:%s?_pragma=foreign_keys(1)&_busy_timeout=5000&_journal_mode=WAL&_synchronous=NORMAL&cache=shared",
+		localPath,
+	)
 	container, err := sqlstore.New(ctx, "sqlite", dbString, dbLog)
 	if err != nil {
 		return "", fmt.Errorf("sqlstore.New: %w", err)
@@ -68,7 +72,7 @@ func handler(ctx context.Context) (string, error) {
 	}
 
 	fmt.Println("Uploading updated database to S3...")
-	if err := uploadToS3(ctx, s3Client, bucketName, dbFileName, localPath); err != nil {
+	if err := s3Client.uploadToS3(ctx, bucketName, dbFileName, localPath); err != nil {
 		return "", fmt.Errorf("upload to S3: %w", err)
 	}
 
