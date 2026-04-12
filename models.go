@@ -18,3 +18,8 @@ type Restaurant struct {
 	Code string `json:"code" `
 	Url  string `json:"url" `
 }
+
+type EventLambda struct {
+	RuCode  string `json:"ruCode"`
+	RunType string `json:"runType"`
+}

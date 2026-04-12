@@ -18,7 +18,7 @@ import (
 	waLog "go.mau.fi/whatsmeow/util/log"
 )
 
-func handler(ctx context.Context) (string, error) {
+func handler(ctx context.Context, event EventLambda) (string, error) {
 	bucketName := os.Getenv("S3_BUCKET_NAME")
 	dbFileName := os.Getenv("DB_FILE_NAME")
 	targetNumber := os.Getenv("TARGET_NUMBER")
@@ -26,8 +26,8 @@ func handler(ctx context.Context) (string, error) {
 
 	dbLog := waLog.Stdout("Database", "DEBUG", true)
 
-	cfg, err := config.LoadDefaultConfig(ctx)
-	s3Client := NewS3Client(cfg)
+	cfgAws, err := config.LoadDefaultConfig(ctx)
+	s3Client := NewS3Client(cfgAws)
 
 	if err != nil {
 		return "", fmt.Errorf("unable to load SDK config: %w", err)
@@ -43,6 +43,7 @@ func handler(ctx context.Context) (string, error) {
 		"file:%s?_pragma=foreign_keys(1)&_busy_timeout=5000&_journal_mode=WAL&_synchronous=NORMAL&cache=shared",
 		localPath,
 	)
+
 	container, err := sqlstore.New(ctx, "sqlite", dbString, dbLog)
 	if err != nil {
 		return "", fmt.Errorf("sqlstore.New: %w", err)
@@ -94,16 +95,26 @@ func handler(ctx context.Context) (string, error) {
 }
 
 func main() {
-	if os.Getenv("AWS_LAMBDA_FUNCTION_NAME") == "" {
+	cfg := Load()
+
+	if cfg.IsDev {
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 		defer cancel()
+		data, err := os.ReadFile("event.json")
+		if err != nil {
+			log.Fatalf("failed to read event.json: %v", err)
+		}
 
-		result, err := handler(ctx)
+		var event EventLambda
+		if err := json.Unmarshal(data, &event); err != nil {
+			log.Fatalf("failed to parse event.json: %v", err)
+		}
+
+		_, err = handler(ctx, event)
 		if err != nil {
 			fmt.Printf("Error en el handler: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("Resultado: %s\n", result)
 	} else {
 		lambda.Start(handler)
 	}
