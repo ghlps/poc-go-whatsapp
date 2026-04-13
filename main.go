@@ -18,7 +18,14 @@ import (
 	waLog "go.mau.fi/whatsmeow/util/log"
 )
 
-func handler(ctx context.Context, event EventLambda) (string, error) {
+func handler(ctx context.Context, raw json.RawMessage) (string, error) {
+	log.Printf("RAW EVENT: %s", string(raw))
+
+	var event EventLambda
+	if err := json.Unmarshal(raw, &event); err != nil {
+		return "", fmt.Errorf("failed to parse event: %w", err)
+	}
+
 	bucketName := os.Getenv("S3_BUCKET_NAME")
 	dbFileName := os.Getenv("DB_FILE_NAME")
 	targetNumber := os.Getenv("TARGET_NUMBER")
@@ -64,17 +71,7 @@ func handler(ctx context.Context, event EventLambda) (string, error) {
 		return "", fmt.Errorf("Connect: %w", err)
 	}
 
-	menuFromFile, err := os.ReadFile("example.json")
-	if err != nil {
-		log.Fatalf("failed to read example menu: %v", err)
-	}
-
-	var menu Menu
-	if err := json.Unmarshal(menuFromFile, &menu); err != nil {
-		log.Fatalf("failed to parse menu from file")
-	}
-
-	formattedMenu := fmtMenu(menu)
+	formattedMenu := fmtMenu(event)
 	if err := sendMessage(client, targetNumber, formattedMenu); err != nil {
 		fmt.Printf("Send error: %v\n", err)
 	}
@@ -100,19 +97,15 @@ func main() {
 	if cfg.IsDev {
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 		defer cancel()
+
 		data, err := os.ReadFile("event.json")
 		if err != nil {
 			log.Fatalf("failed to read event.json: %v", err)
 		}
 
-		var event EventLambda
-		if err := json.Unmarshal(data, &event); err != nil {
-			log.Fatalf("failed to parse event.json: %v", err)
-		}
-
-		_, err = handler(ctx, event)
+		_, err = handler(ctx, data)
 		if err != nil {
-			fmt.Printf("Error en el handler: %v\n", err)
+			fmt.Printf("handler error: %v\n", err)
 			os.Exit(1)
 		}
 	} else {

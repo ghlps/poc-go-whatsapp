@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 	"time"
@@ -25,9 +26,12 @@ func fmtMeal(meals []Meal) string {
 	return strings.Join(formatted, "\n")
 }
 
-func fmtMenu(menu Menu) string {
+func fmtMenu(evt EventLambda) string {
 	var sections []string
 	layout := "02/01/2006"
+	menu := evt.ResponsePayload
+
+	log.Printf("Formatting menu: %+v", menu)
 
 	t, err := time.Parse(layout, menu.Date)
 	if err != nil {
@@ -37,11 +41,16 @@ func fmtMenu(menu Menu) string {
 	weekday := t.Weekday()
 	titleStr := fmt.Sprintf(title, strings.ToUpper(menu.Restaurant.Name), weekDay[int(weekday)], menu.Date)
 
+	header := titleStr
+	if evt.RunType == "CHECKUP" {
+		header = modWarning + "\n\n" + titleStr
+	}
+
 	for i, mealServed := range menu.Served {
 		if meals, exists := menu.Meals[mealServed]; exists {
 			mealSection := mealsHeaders[i] + "\n" + fmtMeal(meals)
 			if i == 0 {
-				sections = append(sections, titleStr+"\n\n"+mealSection)
+				sections = append(sections, header+"\n\n"+mealSection)
 			} else {
 				sections = append(sections, mealSection)
 			}
@@ -101,6 +110,8 @@ var legend = `🌱 - Indicado para veganos
 var mealsHeaders = []string{"*CAFÉ DA MANHÃ*", "*ALMOÇO*", "*JANTAR*"}
 
 var title = `*CARDÁPIO RU %s - %s - %s*`
+
+var modWarning = `Cardápio atualizado`
 
 var taken = `Cardápio retirado de forma automatizada do site oficial do restaurante universitário disponível no link %s`
 

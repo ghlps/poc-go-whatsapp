@@ -1,4 +1,90 @@
 {
   "ruCode": "CEN",
-  "runType": "PRIMARY"
+  "runType": "PRIMARY",
+  "responsePayload": {
+    "restaurant": {
+      "name": "Central",
+      "code": "CEN",
+      "url": "https://proad.ufpr.br/ru/ru-central/"
+    },
+    "date": "11/04/2026",
+    "imgMenu": null,
+    "served": ["breakfast", "lunch", "dinner"],
+    "meals": {
+      "breakfast": [
+        {
+          "name": "Pão de hot dog ou integral com presunto",
+          "icons": ["Contêm produtos de origem suína", "Contém glúten"]
+        },
+        {
+          "name": "Opção vegana: Pão de hot dog ou integral com hommus",
+          "icons": ["Indicado para veganos", "Contém glúten"]
+        },
+        {
+          "name": "Melão",
+          "icons": ["Indicado para veganos"]
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Peixe assado em camadas",
+          "icons": [
+            "Contêm produtos de origem animal",
+            "Contém ingrediente(s) potencialmente alergênico(s)"
+          ]
+        },
+        {
+          "name": "Opção vegana: Moqueca de banana com feijão branco",
+          "icons": ["Indicado para veganos"]
+        },
+        {
+          "name": "Sopa creme de espinafre",
+          "icons": ["Contém glúten", "Contém leite e/ou derivados"]
+        },
+        {
+          "name": "Saladas: Folhosa e abobrinha ao vinagrete",
+          "icons": ["Indicado para veganos", "Indicado para veganos"]
+        },
+        {
+          "name": "Molho para saladas: Molho especial de cenoura",
+          "icons": ["Indicado para veganos"]
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Kafta recheada",
+          "icons": [
+            "Contêm produtos de origem animal",
+            "Contém glúten",
+            "Contém leite e/ou derivados",
+            "Contêm ovos"
+          ]
+        },
+        {
+          "name": "Opção vegana: Quiche de PTS",
+          "icons": ["Indicado para veganos", "Contém glúten"]
+        },
+        {
+          "name": "Chuchu com cenoura sautée",
+          "icons": ["Contém leite e/ou derivados"]
+        },
+        {
+          "name": "Saladas: Folhosa e tabule",
+          "icons": [
+            "Indicado para veganos",
+            "Indicado para veganos",
+            "Contém glúten"
+          ]
+        },
+        {
+          "name": "Molho para saladas: Vinagrete",
+          "icons": ["Indicado para veganos"]
+        },
+        {
+          "name": "Creme de abacate",
+          "icons": ["Contém leite e/ou derivados"]
+        }
+      ]
+    }
+  }
 }
