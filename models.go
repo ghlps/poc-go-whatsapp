@@ -9,8 +9,9 @@ type Menu struct {
 }
 
 type Meal struct {
-	Name  string   `json:"name"  `
-	Icons []string `json:"icons" `
+	Name    string   `json:"name"  `
+	Icons   []string `json:"icons" `
+	Changed bool     `json:"changed"`
 }
 
 type Restaurant struct {

@@ -21,7 +21,11 @@ func fmtEmoji(meal Meal) string {
 func fmtMeal(meals []Meal) string {
 	var formatted []string
 	for _, meal := range meals {
-		formatted = append(formatted, fmtEmoji(meal))
+		line := fmtEmoji(meal)
+		if meal.Changed {
+			line += " (alterado)"
+		}
+		formatted = append(formatted, line)
 	}
 	return strings.Join(formatted, "\n")
 }

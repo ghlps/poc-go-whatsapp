@@ -2,89 +2,93 @@
   "ruCode": "CEN",
   "runType": "PRIMARY",
   "responsePayload": {
-    "restaurant": {
-      "name": "Central",
-      "code": "CEN",
-      "url": "https://proad.ufpr.br/ru/ru-central/"
-    },
-    "date": "11/04/2026",
-    "imgMenu": null,
-    "served": ["breakfast", "lunch", "dinner"],
-    "meals": {
-      "breakfast": [
-        {
-          "name": "Pão de hot dog ou integral com presunto",
-          "icons": ["Contêm produtos de origem suína", "Contém glúten"]
-        },
-        {
-          "name": "Opção vegana: Pão de hot dog ou integral com hommus",
-          "icons": ["Indicado para veganos", "Contém glúten"]
-        },
-        {
-          "name": "Melão",
-          "icons": ["Indicado para veganos"]
-        }
-      ],
-      "dinner": [
-        {
-          "name": "Peixe assado em camadas",
-          "icons": [
-            "Contêm produtos de origem animal",
-            "Contém ingrediente(s) potencialmente alergênico(s)"
-          ]
-        },
-        {
-          "name": "Opção vegana: Moqueca de banana com feijão branco",
-          "icons": ["Indicado para veganos"]
-        },
-        {
-          "name": "Sopa creme de espinafre",
-          "icons": ["Contém glúten", "Contém leite e/ou derivados"]
-        },
-        {
-          "name": "Saladas: Folhosa e abobrinha ao vinagrete",
-          "icons": ["Indicado para veganos", "Indicado para veganos"]
-        },
-        {
-          "name": "Molho para saladas: Molho especial de cenoura",
-          "icons": ["Indicado para veganos"]
-        }
-      ],
-      "lunch": [
-        {
-          "name": "Kafta recheada",
-          "icons": [
-            "Contêm produtos de origem animal",
-            "Contém glúten",
-            "Contém leite e/ou derivados",
-            "Contêm ovos"
-          ]
-        },
-        {
-          "name": "Opção vegana: Quiche de PTS",
-          "icons": ["Indicado para veganos", "Contém glúten"]
-        },
-        {
-          "name": "Chuchu com cenoura sautée",
-          "icons": ["Contém leite e/ou derivados"]
-        },
-        {
-          "name": "Saladas: Folhosa e tabule",
-          "icons": [
-            "Indicado para veganos",
-            "Indicado para veganos",
-            "Contém glúten"
-          ]
-        },
-        {
-          "name": "Molho para saladas: Vinagrete",
-          "icons": ["Indicado para veganos"]
-        },
-        {
-          "name": "Creme de abacate",
-          "icons": ["Contém leite e/ou derivados"]
-        }
-      ]
+    "menu": {
+      "restaurant": {
+        "name": "Central",
+        "code": "CEN",
+        "url": "https://proad.ufpr.br/ru/ru-central/"
+      },
+      "date": "18/04/2026",
+      "imgMenu": null,
+      "served": ["dinner", "breakfast", "lunch"],
+      "meals": {
+        "breakfast": [
+          {
+            "name": "Pão de milho ou integral com presunto",
+            "icons": ["Contêm produtos de origem suína", "Contém glúten"],
+            "changed": true
+          },
+          {
+            "name": "Opção vegana: Pão de milho ou integral com pasta de abacate",
+            "icons": ["Indicado para veganos", "Contém glúten"],
+            "changed": false
+          },
+          {
+            "name": "Salada de frutas",
+            "icons": ["Indicado para veganos"],
+            "changed": false
+          }
+        ],
+        "dinner": [
+          {
+            "name": "Carne moída ao molho",
+            "icons": ["Contêm produtos de origem animal"],
+            "changed": false
+          },
+          {
+            "name": "Opção vegana: Almôndegas de lentilha",
+            "icons": ["Indicado para veganos", "Contém glúten"],
+            "changed": false
+          },
+          {
+            "name": "Sopa primavera",
+            "icons": ["Indicado para veganos"],
+            "changed": false
+          },
+          {
+            "name": "Saladas: Mista verde com abacaxi e pepino",
+            "icons": ["Indicado para veganos", "Indicado para veganos"],
+            "changed": false
+          },
+          {
+            "name": "Molho para saladas: Vinagrete",
+            "icons": ["Indicado para veganos"],
+            "changed": false
+          }
+        ],
+        "lunch": [
+          {
+            "name": "Frango assado na laranja",
+            "icons": ["Contêm produtos de origem animal"],
+            "changed": false
+          },
+          {
+            "name": "Opção vegana: PTS refogada com abóbora",
+            "icons": ["Indicado para veganos"],
+            "changed": false
+          },
+          {
+            "name": "Repolho à portuguesa",
+            "icons": ["Indicado para veganos"],
+            "changed": false
+          },
+          {
+            "name": "Saladas: Folhosa e beterraba cozida",
+            "icons": ["Indicado para veganos", "Indicado para veganos"],
+            "changed": false
+          },
+          {
+            "name": "Molho para saladas: Molho tártaro",
+            "icons": ["Contém leite e/ou derivados", "Contêm ovos"],
+            "changed": false
+          },
+          {
+            "name": "Melancia",
+            "icons": ["Indicado para veganos"],
+            "changed": false
+          }
+        ]
+      }
     }
   }
 }
