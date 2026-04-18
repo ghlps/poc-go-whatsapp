@@ -45,16 +45,11 @@ func fmtMenu(evt EventLambda) string {
 	weekday := t.Weekday()
 	titleStr := fmt.Sprintf(title, strings.ToUpper(menu.Restaurant.Name), weekDay[int(weekday)], menu.Date)
 
-	header := titleStr
-	if evt.RunType == "CHECKUP" {
-		header = modWarning + "\n\n" + titleStr
-	}
-
 	for i, mealServed := range menu.Served {
 		if meals, exists := menu.Meals[mealServed]; exists {
 			mealSection := mealsHeaders[i] + "\n" + fmtMeal(meals)
 			if i == 0 {
-				sections = append(sections, header+"\n\n"+mealSection)
+				sections = append(sections, titleStr+"\n\n"+mealSection)
 			} else {
 				sections = append(sections, mealSection)
 			}
@@ -63,7 +58,6 @@ func fmtMenu(evt EventLambda) string {
 
 	sections = append(sections, legend, fmt.Sprintf(taken, menu.Restaurant.Url), fmt.Sprintf(channel, os.Getenv("TARGET_NUMBER")), copyright)
 	return strings.Join(sections, "\n\n")
-
 }
 
 var iconsMap = map[string]string{
