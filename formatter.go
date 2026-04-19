@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 	"strings"
 	"time"
 )
@@ -56,6 +55,6 @@ func fmtMenu(evt EventLambda) string {
 		}
 	}
 
-	sections = append(sections, legend, fmt.Sprintf(taken, menu.Restaurant.Url), fmt.Sprintf(channel, os.Getenv("TARGET_NUMBER")), copyright)
+	sections = append(sections, legend, fmt.Sprintf(taken, menu.Restaurant.Url), fmt.Sprintf(channel, evt.WhatsAppLink), copyright)
 	return strings.Join(sections, "\n\n")
 }

@@ -23,7 +23,6 @@ func handler(ctx context.Context, raw json.RawMessage) (string, error) {
 
 	bucketName := os.Getenv("S3_BUCKET_NAME")
 	dbFileName := os.Getenv("DB_FILE_NAME")
-	targetNumber := os.Getenv("TARGET_NUMBER")
 	localPath := "/tmp/" + dbFileName
 
 	dbLog := waLog.Stdout("Database", "DEBUG", true)
@@ -67,7 +66,7 @@ func handler(ctx context.Context, raw json.RawMessage) (string, error) {
 	}
 
 	formattedMenu := fmtMenu(event)
-	if err := sendMessage(client, targetNumber, formattedMenu); err != nil {
+	if err := sendMessage(client, event.WhatsAppNumber, formattedMenu); err != nil {
 		fmt.Printf("Send error: %v\n", err)
 	}
 

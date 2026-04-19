@@ -22,6 +22,7 @@ type Restaurant struct {
 
 type EventLambda struct {
 	RuCode          string `json:"ruCode"`
-	RunType         string `json:"runType"`
+	WhatsAppLink    string `json:"whatsAppLink"`
+	WhatsAppNumber  string `json:"whatsAppNumber"`
 	ResponsePayload Menu   `json:"responsePayload"`
 }

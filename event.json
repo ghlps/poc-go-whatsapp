@@ -1,6 +1,7 @@
 {
   "ruCode": "CEN",
-  "runType": "CHECKUP",
+  "whatsAppNumber": "34612345678@s.whatsapp.net",
+  "whatsAppLink": "https://whatsapp.com/channel/0029VazQCEaEQIarkT6jii2o",
   "responsePayload": {
     "restaurant": {
       "name": "Central",
