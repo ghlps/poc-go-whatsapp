@@ -10,11 +10,12 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-func sendMessage(client *whatsmeow.Client, number string, message string) error {
-	jid, err := types.ParseJID(number + "@s.whatsapp.net")
+func sendMessage(client *whatsmeow.Client, newsletterID string, message string) error {
+	jid, err := types.ParseJID(newsletterID)
 	if err != nil {
 		return fmt.Errorf("invalid JID: %w", err)
 	}
+
 	_, err = client.SendMessage(context.Background(), jid, &waProto.Message{
 		Conversation: proto.String(message),
 	})
