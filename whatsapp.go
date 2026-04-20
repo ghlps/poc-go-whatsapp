@@ -10,7 +10,7 @@ import (
 )
 
 func sendNewsletterMessage(client *whatsmeow.Client, number string, msg string) error {
-	jid, _ := types.ParseJID("120363379766529413@newsletter")
+	jid, _ := types.ParseJID(number)
 
 	msgWhatsApp := &waE2E.Message{
 		Conversation: proto.String(msg),
