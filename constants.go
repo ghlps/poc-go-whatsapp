@@ -25,6 +25,14 @@ var iconsMap = map[string]string{
 	"Contêm ovos":                                        "🍳",
 }
 
+var mealOrder = []string{"breakfast", "lunch", "dinner"}
+
+var mealTypeHeaders = map[string]string{
+	"breakfast": "*CAFÉ DA MANHÃ*",
+	"lunch":     "*ALMOÇO*",
+	"dinner":    "*JANTAR*",
+}
+
 var weekDay = []string{
 	"DOMINGO",
 	"SEGUNDA",
@@ -44,8 +52,6 @@ var legend = `🌱 - Indicado para veganos
 ⚠️ - Contém produto(s) alergênico(s)
 🍯 - Contém mel
 🌶️ - Contém pimenta`
-
-var mealsHeaders = []string{"*CAFÉ DA MANHÃ*", "*ALMOÇO*", "*JANTAR*"}
 
 var title = `*CARDÁPIO RU %s - %s - %s*`
 
