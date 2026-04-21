@@ -22,7 +22,6 @@
     },
     "date": "21/04/2026",
     "imgMenu": null,
-    "served": ["breakfast", "lunch", "dinner"],
     "meals": {
       "breakfast": [
         {
