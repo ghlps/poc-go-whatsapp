@@ -56,6 +56,6 @@ func fmtMenu(evt EventLambda) string {
 		}
 	}
 
-	sections = append(sections, legend, fmt.Sprintf(taken, menu.Restaurant.Url), fmt.Sprintf(channel, evt.WhatsAppLink), copyright)
+	sections = append(sections, legend, fmt.Sprintf(taken, menu.Restaurant.Url), fmt.Sprintf(channel, evt.RequestPayload.WhatsAppLink), copyright)
 	return strings.Join(sections, "\n\n")
 }

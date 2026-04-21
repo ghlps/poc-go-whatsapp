@@ -66,7 +66,7 @@ func handler(ctx context.Context, raw json.RawMessage) (string, error) {
 	}
 
 	formattedMenu := fmtMenu(event)
-	if err := sendNewsletterMessage(client, event.WhatsAppNumber, formattedMenu); err != nil {
+	if err := sendNewsletterMessage(client, event.RequestPayload.WhatsAppNumber, formattedMenu); err != nil {
 		fmt.Printf("Send error: %v\n", err)
 	}
 

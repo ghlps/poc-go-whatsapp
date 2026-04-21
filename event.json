@@ -1,52 +1,64 @@
 {
-  "ruCode": "CEN",
-  "whatsAppNumber": "34612345678@s.whatsapp.net",
-  "whatsAppLink": "https://whatsapp.com/channel/0029VazQCEaEQIarkT6jii2o",
+  "version": "1.0",
+  "timestamp": "2026-04-21T05:13:41.758Z",
+  "requestContext": {
+    "requestId": "8369e5b6-54e5-495a-9cbb-2c7fe33c236a",
+    "functionArn": "arn:aws:lambda:sa-east-1:624755431220:function:go-ru-scraper:$LATEST",
+    "condition": "Success",
+    "approximateInvokeCount": 1
+  },
+  "requestPayload": {
+    "ruCode": "CEN",
+    "dateOffset": 0,
+    "whatsAppNumber": "120363379766529413@newsletter",
+    "whatsAppLink": "https://whatsapp.com/channel/0029VazQCEaEQIarkT6jii2o"
+  },
+  "responseContext": { "statusCode": 200, "executedVersion": "$LATEST" },
   "responsePayload": {
     "restaurant": {
       "name": "Central",
       "code": "CEN",
       "url": "https://proad.ufpr.br/ru/ru-central/"
     },
-    "date": "18/04/2026",
+    "date": "21/04/2026",
     "imgMenu": null,
-    "served": ["dinner", "breakfast", "lunch"],
+    "served": ["breakfast", "lunch", "dinner"],
     "meals": {
       "breakfast": [
         {
           "name": "Pão de milho ou integral com presunto",
           "icons": ["Contêm produtos de origem suína", "Contém glúten"],
-          "changed": true
+          "changed": false
         },
         {
-          "name": "Opção vegana: Pão de milho ou integral com pasta de abacate",
+          "name": "Opção vegana: Pão de milho ou integral com escabeche de berinjela",
           "icons": ["Indicado para veganos", "Contém glúten"],
           "changed": false
         },
         {
-          "name": "Salada de frutas",
+          "name": "Mamão",
           "icons": ["Indicado para veganos"],
           "changed": false
         }
       ],
       "dinner": [
         {
-          "name": "Carne moída ao molho",
+          "name": "Carne moída ao sugo",
           "icons": ["Contêm produtos de origem animal"],
           "changed": false
         },
         {
-          "name": "Opção vegana: Almôndegas de lentilha",
-          "icons": ["Indicado para veganos", "Contém glúten"],
-          "changed": false
-        },
-        {
-          "name": "Sopa primavera",
+          "name": "Opção vegana: Ervilha seca ao sugo com milho e pimentão",
           "icons": ["Indicado para veganos"],
           "changed": false
         },
         {
-          "name": "Saladas: Mista verde com abacaxi e pepino",
+          "name": "Sopa de aipim",
+          "icons": ["Indicado para veganos"],
+          "changed": false
+        },
+        {
+          "name": "Saladas: Folhosa e beterraba ralada",
           "icons": ["Indicado para veganos", "Indicado para veganos"],
           "changed": false
         },
@@ -58,33 +70,36 @@
       ],
       "lunch": [
         {
-          "name": "Frango assado na laranja",
-          "icons": ["Contêm produtos de origem animal"],
+          "name": "Lombo suíno com abacaxi",
+          "icons": ["Contêm produtos de origem suína"],
           "changed": false
         },
         {
-          "name": "Opção vegana: PTS refogada com abóbora",
-          "icons": ["Indicado para veganos"],
+          "name": "Opção vegana: Croquete de feijão fradinho com abacaxi grelhado",
+          "icons": ["Indicado para veganos", "Contém glúten"],
           "changed": false
         },
         {
-          "name": "Repolho à portuguesa",
-          "icons": ["Indicado para veganos"],
+          "name": "Cenoura com acelga à moda chinesa",
+          "icons": [
+            "Indicado para veganos",
+            "Contém ingrediente(s) potencialmente alergênico(s)"
+          ],
           "changed": false
         },
         {
-          "name": "Saladas: Folhosa e beterraba cozida",
+          "name": "Saladas: Folhosa e tomate",
           "icons": ["Indicado para veganos", "Indicado para veganos"],
           "changed": false
         },
         {
-          "name": "Molho para saladas: Molho tártaro",
+          "name": "Molho para saladas: Molho verde",
           "icons": ["Contém leite e/ou derivados", "Contêm ovos"],
           "changed": false
         },
         {
-          "name": "Melancia",
-          "icons": ["Indicado para veganos"],
+          "name": "Gelatina",
+          "icons": ["Contêm produtos de origem animal"],
           "changed": false
         }
       ]
